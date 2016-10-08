@@ -1,5 +1,5 @@
 ineq <- function(x, parameter = NULL, type=c("Gini", "RS", "Atkinson", "Theil",
-    "Kolm", "var", "square.var", "entropy"), na.rm = TRUE)
+    "Kolm", "Palma", "var", "square.var", "entropy"), na.rm = TRUE)
 {
   switch(match.arg(type),
   Gini = Gini(x, na.rm = na.rm),
@@ -7,6 +7,7 @@ ineq <- function(x, parameter = NULL, type=c("Gini", "RS", "Atkinson", "Theil",
   Atkinson = Atkinson(x, parameter = parameter, na.rm = na.rm),
   Theil = Theil(x, parameter = parameter, na.rm = na.rm),
   Kolm = Kolm(x, parameter = parameter, na.rm = na.rm),
+  Palma = Palma(x, na.rm = na.rm),
   var = var.coeff(x, na.rm = na.rm),
   square.var = var.coeff(x, square=TRUE, na.rm = na.rm),
   entropy = entropy(x, parameter = parameter, na.rm = na.rm))
@@ -87,6 +88,17 @@ Kolm <- function(x, parameter = 1, na.rm = TRUE)
   KM <- mean(exp(KM))
   KM <- (1/parameter)*log(KM)
   KM
+}
+
+Palma <- function(x, na.rm = TRUE)
+{
+  if(!na.rm && any(is.na(x))) return(NA_real_)
+  x <- as.numeric(na.omit(x))
+  x <- as.numeric(x)
+  x <- sort(x)
+  bf <- sum( x[1:(length(x)*0.4)] )
+  tt <- sum( x[-(1:length(x)*0.9)] )
+  tt / bf
 }
 
 entropy <- function(x, parameter = 0.5, na.rm = TRUE)

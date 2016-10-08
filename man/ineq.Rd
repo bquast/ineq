@@ -5,6 +5,7 @@
 \alias{Atkinson}
 \alias{Theil}
 \alias{Kolm}
+\alias{Palma}
 \alias{var.coeff}
 \alias{entropy}
 \title{Inequality Measures}
@@ -12,14 +13,15 @@
  computes the inequality within a vector according to the
 specified inequality measure }
 \usage{
-ineq(x, parameter = NULL, type = c("Gini", "RS", "Atkinson", "Theil", "Kolm", "var",
-     "square.var", "entropy"), na.rm = TRUE)
+ineq(x, parameter = NULL, type = c("Gini", "RS", "Atkinson", "Theil", "Kolm", "Palma",
+     "var", "square.var", "entropy"), na.rm = TRUE)
 
 Gini(x, corr = FALSE, na.rm = TRUE)
 RS(x, na.rm = TRUE)
 Atkinson(x, parameter = 0.5, na.rm = TRUE)
 Theil(x, parameter = 0, na.rm = TRUE)
 Kolm(x, parameter = 1, na.rm = TRUE)
+Palma(x, na.rm = TRUE)
 var.coeff(x, square = FALSE, na.rm = TRUE)
 entropy(x, parameter = 0.5, na.rm = TRUE)
 }
@@ -45,7 +47,8 @@ entropy(x, parameter = 0.5, na.rm = TRUE)
 
          \code{Gini} is the Gini coefficient, \code{RS} is the the Ricci-Schutz
          coefficient (also called Pietra's measure), \code{Atkinson} gives
-         Atkinson's measure and \code{Kolm} computes Kolm's measure.
+         Atkinson's measure, \code{Kolm} computes Kolm's measure,
+         and \code{Palma} gives the Palma ratio.
 
          If the parameter in \code{Theil} is 0 Theil's entropy measure is
          computed, for every other value Theil's second measure is

@@ -8,6 +8,7 @@ export(
   "Atkinson",
   "Theil",
   "Kolm",
+  "Palma",
   "var.coeff",
   "entropy",
 
